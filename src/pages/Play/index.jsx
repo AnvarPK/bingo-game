@@ -9,7 +9,7 @@ const Play = () => {
                    <Board />
                 </div>
                 <div className="">
-                    ewr
+                    Right side
                 </div>
             </div>
         </div>
