@@ -1,0 +1,1 @@
+export const transposeOfMatrix = matrix => matrix.map((_, index) => matrix.map(itm => itm[index]));

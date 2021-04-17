@@ -5,8 +5,8 @@ const Play = () => {
     return (
         <div className="container">
             <div className="flex ">
-                <div className="flex-grow h-screen ">
-                   <Board />
+                <div className="flex-grow h-screen place-center">
+                    <Board  />
                 </div>
                 <div className="">
                     Right side

@@ -8,7 +8,7 @@ body {
 }
  * {
      box-sizing: border-box;
-     transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    //  transition: all .3s ease-in-out;
  }
 
 code {
@@ -31,3 +31,10 @@ code {
 }
 .flex-grow {
 }
+
+// grid
+.place-center{
+  display: grid;
+  place-items: center;
+}
+

@@ -1,18 +1,29 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { checkCell, crossCell } from "../../../redux/actions/boardCells";
 
-const Cell = ({ value }) => {
-    const [isCrossed, setisCrossed] = useState(false);
 
-    const clickHandler = (e) => {
-        setisCrossed(true);
-    }
+const Cell = ({ obj }) => {
+    const dispatch = useDispatch();
+    const [rowIndex, columnIndex] = obj.pos;
+
+    const clickHandler = useCallback((e) => {
+        dispatch(checkCell(obj));
+    }, [dispatch])
+
+    useEffect(() => {
+        if (obj.isChecked) {
+            dispatch(crossCell({ rowIndex, columnIndex }));
+        }
+    }, [obj.isChecked])
 
     return (
         <div
-            className={`grid__cell ${isCrossed ? 'grid__cell-crossed' : ''}`}
+            className={`grid__cell ${obj.isChecked ? 'grid__cell-checked' : ''} ${obj.isCrossed ? 'grid__cell-crossed' : ''}`}
             onClick={clickHandler}
         >
-            {value}
+            {obj.number}
+            <small>&#40;{rowIndex + 1}&#44; {columnIndex + 1}&#41;</small>
         </div>
     )
 }
