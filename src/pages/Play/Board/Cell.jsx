@@ -22,7 +22,7 @@ const Cell = ({ obj }) => {
             className={`grid__cell ${obj.isChecked ? 'grid__cell-checked' : ''} ${obj.isCrossed ? 'grid__cell-crossed' : ''}`}
             onClick={clickHandler}
         >
-            {obj.number}
+            {obj.isChecked ? <>&#10006;</> : <>{obj.number}</>}
             {/* <small>&#40;{rowIndex}&#44; {columnIndex}&#41;</small> */}
         </div>
     )
