@@ -8,19 +8,16 @@ body {
 }
  * {
      box-sizing: border-box;
-     transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    //  transition: all .3s ease-in-out;
  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 .container {
   max-width: 1400px;
   width: 100%;
   margin: auto;
 }
+
 /* height */
 .h-screen {
   height: 100vh;
@@ -29,5 +26,12 @@ code {
 .flex {
   display: flex;
 }
-.flex-grow {
+
+
+/* grid*/
+.place-center{
+  row-gap: .5em;
+  display: grid;
+  place-items: center;
 }
+

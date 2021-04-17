@@ -1,0 +1,33 @@
+.grid__cell {
+  background-color: $cell-bg;
+  border: 0.5px solid darken($cell-bg, $border-darken);
+  color: lighten($cell-bg, $color-lighen);
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  position: relative;
+  font-weight: 700;
+  font-size: larger;
+  &:hover {
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 1);
+  }
+  &-checked {
+    background-color: $checked-bg;
+    border: 0.5px solid darken($checked-bg, $border-darken);
+    color: lighten($checked-bg, $color-lighen);
+  }
+  &-crossed {
+    background-color: $crossed-bg;
+    border-color: darken($crossed-bg, $border-darken);
+    color: lighten($crossed-bg, $color-lighen);
+  }
+  small {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-weight: 400;
+    font-size: 0.6em;
+  }
+}

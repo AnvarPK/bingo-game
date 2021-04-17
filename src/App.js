@@ -5,8 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import Play from './pages/Play';
-import './firebase/firebase';
-import './playground/promises';
+// import './firebase/firebase';
 
 function App() {
   return (

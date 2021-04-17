@@ -1,19 +1,22 @@
-import React from 'react'
+import { connect } from 'react-redux';
 import './style.scss';
 import Cell from './Cell';
+import { getCells } from '../../../redux/selectors/boardCells';
 
-const Board = () => {
-
-    const numbers = Array(25).fill().map((_, index) => index + 1);
-    numbers.sort(() => Math.random() - 0.5);
+const Board = props => {
+    const { cells } = props;
 
     return (
-        <div className="grid" >
-            {numbers.map((item) => (
-                <Cell value={item} key={item} />
+        <div className="board" >
+            {cells.map((item) => (
+                <Cell obj={item} key={item.number} />
             ))}
         </div>
     )
 }
 
-export default Board
+const mapStateToProps = (sate) => ({
+    cells: getCells(sate.boardCells.cells, sate.boardNumbers),
+})
+
+export default connect(mapStateToProps)(Board);
