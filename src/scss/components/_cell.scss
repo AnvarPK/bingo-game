@@ -1,42 +1,33 @@
-.grid {
-  --box-heght: 500px;
-  --box-width: 500px;
-  width: var(--box-heght);
-  height: var(--box-width);
-  // background-color: rgb(65, 120, 202);
-  color: #fff;
+.grid__cell {
+  background-color: $cell-bg;
+  border: 0.5px solid darken($cell-bg, $border-darken);
+  color: lighten($cell-bg, $color-lighen);
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+  cursor: pointer;
   display: grid;
-  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
-  gap: 0.5em;
-  &__cell {
-    background-color: rgb(102, 106, 155);
-    border: 0.5px solid rgb(94, 98, 141);
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    position: relative;
-    font-weight: 700;
-    &:hover {
-      box-shadow: 0 0 6px 1px rgba(0, 0, 0, 1);
-    }
-    &-checked {
-      background-color: rgba(102, 106, 155, 0.7);
-      border: 0.5px solid rgba(89, 93, 136, 0.7);
-      color: rgb(38, 39, 59);
-    }
-    &-crossed {
-      background-color: $crossed-bg;
-      border-color: darken($crossed-bg, 10%);
-      color: darken($crossed-bg, 20%);
-    }
-    small {
-      position: absolute;
-      top: 3px;
-      right: 3px;
-      font-weight: 400;
-      font-size: 0.6em;
-    }
+  place-items: center;
+  position: relative;
+  font-weight: 700;
+  font-size: larger;
+  &:hover {
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 1);
+  }
+  &-checked {
+    background-color: $checked-bg;
+    border: 0.5px solid darken($checked-bg, $border-darken);
+    color: lighten($checked-bg, $color-lighen);
+  }
+  &-crossed {
+    background-color: $crossed-bg;
+    border-color: darken($crossed-bg, $border-darken);
+    color: lighten($crossed-bg, $color-lighen);
+  }
+  small {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-weight: 400;
+    font-size: 0.6em;
   }
 }

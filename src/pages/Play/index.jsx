@@ -1,12 +1,14 @@
 import React from 'react'
 import Board from './Board'
+import ResultBord from './ResultBord'
 
 const Play = () => {
     return (
         <div className="container">
             <div className="flex ">
                 <div className="flex-grow h-screen place-center">
-                    <Board  />
+                    <Board />
+                    <ResultBord />
                 </div>
                 <div className="">
                     Right side

@@ -1,0 +1,31 @@
+$cell-bg: #e91e63;
+$cell-crossed: #006064; //#880E4F;
+$border-darken: 10%;
+$color-lighen: 30%;
+
+.result-board {
+  align-self: start;
+  height: 100px;
+  width: 500px;
+  display: grid;
+  grid-template: 1fr / repeat(5, 1fr);
+  gap: 0.5em;
+  .grid__cell {
+    background-color: $cell-bg;
+    border: 0.5px solid darken($cell-bg, $border-darken);
+    color: lighten($cell-bg, $color-lighen);
+    box-shadow: none;
+    // cursor: none;
+    pointer-events: none;
+    font-size: xx-large;
+    // &:hover {
+    //   box-shadow: none
+    // }
+
+    &-crossed {
+      background-color: $cell-crossed;
+      border: 0.5px solid darken($cell-crossed, $border-darken);
+      color: lighten($cell-crossed, $color-lighen);
+    }
+  }
+}

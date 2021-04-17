@@ -23,7 +23,7 @@ const Cell = ({ obj }) => {
             onClick={clickHandler}
         >
             {obj.number}
-            <small>&#40;{rowIndex }&#44; {columnIndex }&#41;</small>
+            {/* <small>&#40;{rowIndex}&#44; {columnIndex}&#41;</small> */}
         </div>
     )
 }

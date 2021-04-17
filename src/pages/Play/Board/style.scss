@@ -1,3 +1,13 @@
-.grid {
 
+
+.board {
+  --box-heght: 500px;
+  --box-width: 500px;
+  width: var(--box-heght);
+  height: var(--box-width);
+  color: #fff;
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  gap: 0.5em;
+  align-self: end;
 }

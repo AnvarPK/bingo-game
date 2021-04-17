@@ -7,7 +7,7 @@ const Board = props => {
     const { cells } = props;
 
     return (
-        <div className="grid" >
+        <div className="board" >
             {cells.map((item) => (
                 <Cell obj={item} key={item.number} />
             ))}
@@ -15,8 +15,8 @@ const Board = props => {
     )
 }
 
-const mapStateToProps = ({ boardCells, boardNumbers }) => ({
-    cells: getCells(boardCells, boardNumbers)
+const mapStateToProps = (sate) => ({
+    cells: getCells(sate.boardCells.cells, sate.boardNumbers),
 })
 
 export default connect(mapStateToProps)(Board);
