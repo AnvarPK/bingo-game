@@ -29,6 +29,7 @@
     &-crossed {
       background-color: $crossed-bg;
       border-color: darken($crossed-bg, 10%);
+      color: darken($crossed-bg, 20%);
     }
     small {
       position: absolute;

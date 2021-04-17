@@ -1,4 +1,4 @@
-import { transposeOfMatrix } from "../../utils/matrix";
+import { digionalsOfMatrinx, transposeOfMatrix } from "../../utils/matrix";
 
 let defaultValues = [
     [{ isChecked: false, isCrossed: false, pos: [0, 0] }, { isChecked: false, isCrossed: false, pos: [0, 1] }, { isChecked: false, isCrossed: false, pos: [0, 2] }, { isChecked: false, isCrossed: false, pos: [0, 3] }, { isChecked: false, isCrossed: false, pos: [0, 4] }],
@@ -21,17 +21,28 @@ export default (state = defaultValues, action) => {
             }))
 
         case CROSS_CELL:
-            let transpose = transposeOfMatrix(state);
-            let regular = state
+            const regular = state
+            const transpose = transposeOfMatrix(state);
+            const digonals = digionalsOfMatrinx(state);
             const { rowIndex, columnIndex } = action.payload;
 
             const isRowFullChecked = regular[rowIndex].every(itm => itm.isChecked);
             const isColumnFullChecked = transpose[columnIndex].every(itm => itm.isChecked);
+            const isDiogonal1FullChecked = (rowIndex === columnIndex) && digonals[0].every(itm => itm.isChecked);
+            const isDiogonal2FullChecked = ((rowIndex + columnIndex) === state[0].length - 1) && digonals[1].every(itm => itm.isChecked);
 
             return state.map((row, index) => {
                 if (isRowFullChecked && index === rowIndex) row = row.map(itm => ({ ...itm, isCrossed: true }));
                 if (isColumnFullChecked) row = row.map(itm => {
                     if (itm.pos[1] === columnIndex) itm = { ...itm, isCrossed: true }
+                    return itm
+                })
+                if (isDiogonal1FullChecked) row = row.map(itm => {
+                    if (itm.pos[0] === itm.pos[1]) itm = { ...itm, isCrossed: true }
+                    return itm
+                })
+                if (isDiogonal2FullChecked) row = row.map(itm => {
+                    if (itm.pos[0] + itm.pos[1] === state[0].length - 1) itm = { ...itm, isCrossed: true }
                     return itm
                 })
                 return row
