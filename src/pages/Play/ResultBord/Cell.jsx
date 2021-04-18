@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 const Cell = ({ value, matchCount }) => (
     <div className={`grid__cell ${value <= matchCount ? 'grid__cell-crossed' : ''} `}>
-        {(value <= matchCount) && <>&#10003;</>}
+        {(value <= matchCount) && <>&#10004;</>}
 
     </div>
 )

@@ -1,6 +1,6 @@
 import { digionalsOfMatrinx, transposeOfMatrix } from "../../utils/matrix";
 
-let defaultValues = {
+export const newBoadrValues = {
     matchCount: 0,
     cells: [
         [{ isChecked: false, isCrossed: false, pos: [0, 0] }, { isChecked: false, isCrossed: false, pos: [0, 1] }, { isChecked: false, isCrossed: false, pos: [0, 2] }, { isChecked: false, isCrossed: false, pos: [0, 3] }, { isChecked: false, isCrossed: false, pos: [0, 4] }],
@@ -14,9 +14,8 @@ let defaultValues = {
 export const CHECK_CELL = 'CHECK_CELL';
 export const CROSS_CELL = 'CROSS_CELL';
 
-export default (state = defaultValues, action) => {
+export default (state = newBoadrValues, action) => {
     switch (action.type) {
-
         case CHECK_CELL:
             return {
                 ...state,

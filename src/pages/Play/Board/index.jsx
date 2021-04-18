@@ -4,19 +4,21 @@ import Cell from './Cell';
 import { getCells } from '../../../redux/selectors/boardCells';
 
 const Board = props => {
-    const { cells } = props;
-
+    const { cells, data } = props;
     return (
         <div className="board" >
             {cells.map((item) => (
-                <Cell obj={item} key={item.number} />
+                <Cell obj={item} data={data} key={item.number} />
             ))}
         </div>
     )
 }
 
-const mapStateToProps = (sate) => ({
-    cells: getCells(sate.boardCells.cells, sate.boardNumbers),
-})
+const mapStateToProps = (state) => {
+    return {
+        data: state.boardCells.cells,
+        cells: getCells(state.boardCells.cells, state.boardNumbers),
+    }
+}
 
 export default connect(mapStateToProps)(Board);

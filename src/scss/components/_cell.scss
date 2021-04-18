@@ -13,15 +13,32 @@
   &:hover {
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 1);
   }
+
+  &--icon {
+    opacity: 0.5;
+    font-size: xx-large;
+    position: absolute;
+  }
+
   &-checked {
     background-color: $checked-bg;
     border: 0.5px solid darken($checked-bg, $border-darken);
     color: lighten($checked-bg, $color-lighen);
+    .grid__cell {
+      &--icon {
+        color: lighten($checked-bg, 20%);
+      }
+    }
   }
   &-crossed {
     background-color: $crossed-bg;
     border-color: darken($crossed-bg, $border-darken);
     color: lighten($crossed-bg, $color-lighen);
+    .grid__cell {
+        &--icon {
+          color: lighten($crossed-bg, 20%);
+        }
+      }
   }
   small {
     position: absolute;
