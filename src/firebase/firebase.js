@@ -1,12 +1,26 @@
 import firebase from 'firebase';
 
-// // Initialize Firebase
-// if (!firebase.apps.length) {
-//     firebase.initializeApp(firebaseConfig);
-// } else {
-//     firebase.app();
-// }
-// const db = firebase.database();
+
+var firebaseConfig = {
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+};
+
+
+// Initialize Firebase
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+} else {
+    firebase.app();
+}
+const db = firebase.database();
+
+export { firebase, db as default };
 
 // //set
 // db.ref().set({
@@ -129,3 +143,13 @@ import firebase from 'firebase';
 //     }, (e) => {
 //         console.log("Failed. ", e);
 //     })
+
+
+
+//read realtime
+db.ref('boards/-MY_XQzDrpB1v26mJ_KO/cells/0/0').on('child_changed', (snapshot) => {
+    const val = snapshot.val();
+    console.log(val)
+}, (e) => {
+    console.log('Error with data fetching ', e)
+})
