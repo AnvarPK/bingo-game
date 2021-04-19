@@ -6,11 +6,14 @@ export const checkCell = (payload) => ({
     payload
 })
 
-export const startCheckCell = (id, payload, cells) => {
+export const startCheckCell = (id, payload) => {
     console.log(id, payload)
     return (dispatch) => {
-        DB.ref(`boards/${id}/cells/${payload.pos[0]}/${payload.pos[1]}`).update({ isChecked: true }).then(() => {
+        const cellPos = { row: payload.pos[0], column: payload.pos[1] };
+
+        DB.ref(`boards/${id}/cellPos`).update(cellPos).then(() => {
             dispatch(checkCell(payload))
+
         }).catch((e) => {
             console.log("Failed. ", e);
         })

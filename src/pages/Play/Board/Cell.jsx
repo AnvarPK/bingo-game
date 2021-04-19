@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { crossCell, startCheckCell } from "../../../redux/actions/boardCells";
 
 
-const Cell = ({ obj, data }) => {
+const Cell = ({ boardID, obj }) => {
     const [rowIndex, columnIndex] = obj.pos;
     const dispatch = useDispatch();
-    const clickHandler = useCallback((e) => {
-        dispatch(startCheckCell("-MY_XQzDrpB1v26mJ_KO", obj, data));
+
+    const clickHandler = useCallback(_ => {
+        if (!obj.isChecked && boardID ) dispatch(startCheckCell(boardID, obj));
     }, [dispatch])
 
     useEffect(() => {
@@ -29,12 +30,4 @@ const Cell = ({ obj, data }) => {
 }
 
 
-// const mapStateToProps = (state) => {
-//     console.log(state)
-//     return {
-//         boardId: state.boardCells.id,
-//     }
-// }
-
-// export default connect(mapStateToProps)(Cell);
 export default Cell;

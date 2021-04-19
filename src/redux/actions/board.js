@@ -8,17 +8,10 @@ export const setBoard = (payload) => ({
 
 export const startSetBoard = (boardData = {}) => {
     return (dispatch) => {
-
-        const {
-            playersCount =  2,
-            cellPos = {row:null,column:null}
-        } = boardData;
-
-        const board = { playersCount, cellPos };
-        DB.ref('boards').push(board).then((ref) => {
+        DB.ref('boards').push(boardData).then((ref) => {
             dispatch(setBoard({
                 id: ref.key,
-                ...board
+                ...boardData
             }))
         })
 

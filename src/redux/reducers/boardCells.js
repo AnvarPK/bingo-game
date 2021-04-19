@@ -20,6 +20,7 @@ export default (state = newBoadrValues, action) => {
             return {
                 ...state,
                 cells: state.cells.map((row) => row.map((cell) => {
+                    console.log(cell.pos === action.payload.pos)
                     if (cell.pos === action.payload.pos) cell.isChecked = true;
                     return cell;
                 }))
