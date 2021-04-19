@@ -1,4 +1,6 @@
 import firebase from 'firebase';
+import { checkCell } from '../redux/actions/boardCells';
+
 
 
 var firebaseConfig = {
@@ -21,6 +23,32 @@ if (!firebase.apps.length) {
 const db = firebase.database();
 
 export { firebase, db as default };
+
+export const  fromDB = (id, dispatch) =>{
+    db.ref(`board/${id}/cellPos`).on('child_changed', data => {
+        console.log(data)
+        // if (data.val()) {
+        //   dispatch({
+        //     type: 'SET_MESSAGE',
+        //     payload: data.val() 
+        //   });
+        // }
+      });
+}
+
+db.ref('expenses')
+    .on('value', (snapshot) => {
+        const expenses = [];
+        snapshot.forEach((childSnapshot) => {
+            expenses.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            })
+        })
+        console.log(expenses)
+    }, (e) => {
+        console.log("Failed. ", e);
+    })
 
 // //set
 // db.ref().set({
