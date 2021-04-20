@@ -1,4 +1,4 @@
-export const SET_BOARD = 'SET_BOARD';
+import { SET_BOARD } from '../types';
 
 const dafaultValue = {
     playersCount: 0,

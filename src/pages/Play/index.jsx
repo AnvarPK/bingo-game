@@ -1,25 +1,19 @@
-import React from 'react'
-import { useEffect } from 'react';
+import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux';
-import { startSetBoard } from '../../redux/actions/board'
+import { watchBoardCells } from '../../redux/actions/boardCells';
 import Board from './Board'
 import ResultBord from './ResultBord'
+import './style.scss';
 
-const boardData = {
-    playersCount :  2,
-    cellPos : { row: null, column: null }
-};
-
-const Play = ({boardID}) => {
-    console.log(boardID)
+const Play = ({ boardID }) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        // dispatch(startSetBoard(boardData))
+        dispatch(watchBoardCells(boardID))
     }, [])
     return (
         <div className="container">
             <div className="flex ">
-                <div className="flex-grow h-screen place-center">
+                <div className="flex-grow h-screen place-center boar-wrapper">
                     <Board />
                     <ResultBord />
                 </div>

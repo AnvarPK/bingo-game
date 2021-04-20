@@ -1,16 +1,18 @@
-import DB from '../../firebase/firebase';
-import { CHECK_CELL, CROSS_CELL } from '../reducers/boardCells';
+import DB from '../../config/firebase';
+import { CHECK_CELL, CROSS_CELL } from '../types';
 
 export const checkCell = (payload) => ({
     type: CHECK_CELL,
     payload
 })
 
-export const startCheckCell = (id, payload, cells) => {
-    console.log(id, payload)
+export const startCheckCell = (id, payload) => {
     return (dispatch) => {
-        DB.ref(`boards/${id}/cells/${payload.pos[0]}/${payload.pos[1]}`).update({ isChecked: true }).then(() => {
+        const cellPos = { row: payload.pos[0], column: payload.pos[1] };
+
+        DB.ref(`boards/${id}/cellPos`).update(cellPos).then(() => {
             dispatch(checkCell(payload))
+
         }).catch((e) => {
             console.log("Failed. ", e);
         })
@@ -22,3 +24,11 @@ export const crossCell = (payload) => ({
     payload
 })
 
+export const watchBoardCells = (baordID) => async dispatch => {
+    DB.ref(`boards/${baordID}/cellPos`).on('value', snapshot => {
+        if (snapshot.val()) {
+            const pos = [snapshot.val().row, snapshot.val().column];
+            dispatch(checkCell({ pos }));
+        }
+    });
+}

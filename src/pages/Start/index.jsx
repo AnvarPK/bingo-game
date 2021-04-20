@@ -1,4 +1,9 @@
-import Select from 'react-select'
+import { useCallback, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router';
+import Select from 'react-select';
+import { startSetBoard } from '../../redux/actions/board';
+import { colourStyles } from './style';
 import './style.scss';
 
 const options = [
@@ -7,44 +12,48 @@ const options = [
     { value: '4', label: '4' }
 ]
 
+const Start = ({ boardID }) => {
+    const dispatch = useDispatch();
+    const [playerCount, setPlayerCount] = useState(options[0]);
 
-const colourStyles = {
-    control: styles => ({ ...styles, backgroundColor: '#00CDAC', marginLeft: 10 }),
-    option: (styles, { data, isSelected }) => {
-        return {
-            ...styles,
-            backgroundColor: isSelected ? '#02aab0' : '#00CDAC',
-            color: isSelected ? 'white' : data.color
+    const chnageHandler = useCallback(val => {
+        setPlayerCount(val)
+    }, [])
+
+    const clickHandler = useCallback(_ => {
+        const boardData = {
+            playersCount: +playerCount.value,
+            cellPos: { row: null, column: null }
         };
-    },
-    menu:styles => ({ ...styles, backgroundColor: '#00CDAC' })
-};
+        dispatch(startSetBoard(boardData))
+    }, [playerCount])
 
+    if (boardID) return <Redirect to='/play' />;
 
-const Start = () => {
     return (
         <div className="start-page h-screen place-center">
             <div className="start-wrapper">
-                <h1>Star Game</h1>
+                <h1>Bingo Game</h1>
                 <div className="game-inputs">
                     <div className="game-inputs__field">
                         <label htmlFor="" className="game-inputs__label">Number of Playes</label>
                         <Select
                             options={options}
-                            label="Single select"
+                            label="Count"
+                            value={playerCount}
                             styles={colourStyles}
+                            onChange={chnageHandler}
                         />
-                        {/* <input type="number" className="game-inputs__players" /> */}
                     </div>
                     <div className="game-inputs__field">
-                        <button className="game-inputs__start-button">START</button>
+                        <button className="game-inputs__start-button" onClick={clickHandler}>START</button>
                     </div>
-
-
                 </div>
             </div>
         </div>
     )
 }
 
-export default Start
+const mapStateToProps = ({ board }) => ({ boardID: board.id })
+
+export default connect(mapStateToProps)(Start);
