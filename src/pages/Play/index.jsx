@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { watchBoardCells } from '../../redux/actions/boardCells';
 import Board from './Board'
 import ResultBord from './ResultBord'
 import './style.scss';
 
-const Play = ({ boardID }) => {
-    const dispatch = useDispatch();
+const Play = ({ boardID, dispatch }) => {
     useEffect(() => {
         dispatch(watchBoardCells(boardID))
     }, [])

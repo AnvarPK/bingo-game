@@ -23,12 +23,13 @@ const Start = ({ boardID }) => {
     const clickHandler = useCallback(_ => {
         const boardData = {
             playersCount: +playerCount.value,
+            joined: 1,
             cellPos: { row: null, column: null }
         };
         dispatch(startSetBoard(boardData))
     }, [playerCount])
 
-    if (boardID) return <Redirect to='/play' />;
+    if (boardID) return <Redirect to='/invite' />;
 
     return (
         <div className="start-page h-screen place-center">
