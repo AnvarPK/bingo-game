@@ -1,4 +1,5 @@
 import { digionalsOfMatrinx, transposeOfMatrix } from "../../utils/matrix";
+import { CHECK_CELL, CROSS_CELL } from '../types';
 
 export const newBoadrValues = {
     matchCount: 0,
@@ -11,17 +12,14 @@ export const newBoadrValues = {
     ]
 };
 
-export const CHECK_CELL = 'CHECK_CELL';
-export const CROSS_CELL = 'CROSS_CELL';
-
 export default (state = newBoadrValues, action) => {
+
     switch (action.type) {
         case CHECK_CELL:
             return {
                 ...state,
                 cells: state.cells.map((row) => row.map((cell) => {
-                    console.log(cell.pos === action.payload.pos)
-                    if (cell.pos === action.payload.pos) cell.isChecked = true;
+                    if (JSON.stringify(cell.pos) === JSON.stringify(action.payload.pos)) cell.isChecked = true;
                     return cell;
                 }))
             }

@@ -33,7 +33,7 @@ const Start = ({ boardID }) => {
     return (
         <div className="start-page h-screen place-center">
             <div className="start-wrapper">
-                <h1>Star Game</h1>
+                <h1>Bingo Game</h1>
                 <div className="game-inputs">
                     <div className="game-inputs__field">
                         <label htmlFor="" className="game-inputs__label">Number of Playes</label>

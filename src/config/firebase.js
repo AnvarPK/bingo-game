@@ -1,17 +1,5 @@
 import firebase from 'firebase';
-import { checkCell } from '../redux/actions/boardCells';
-
-
-
-var firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
-};
+import { firebaseConfig } from './keys';
 
 
 // Initialize Firebase
@@ -24,31 +12,19 @@ const db = firebase.database();
 
 export { firebase, db as default };
 
-export const  fromDB = (id, dispatch) =>{
-    db.ref(`board/${id}/cellPos`).on('child_changed', data => {
-        console.log(data)
-        // if (data.val()) {
-        //   dispatch({
-        //     type: 'SET_MESSAGE',
-        //     payload: data.val() 
-        //   });
-        // }
-      });
-}
-
-db.ref('expenses')
-    .on('value', (snapshot) => {
-        const expenses = [];
-        snapshot.forEach((childSnapshot) => {
-            expenses.push({
-                id: childSnapshot.key,
-                ...childSnapshot.val()
-            })
-        })
-        console.log(expenses)
-    }, (e) => {
-        console.log("Failed. ", e);
-    })
+// db.ref('expenses')
+//     .on('value', (snapshot) => {
+//         const expenses = [];
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key,
+//                 ...childSnapshot.val()
+//             })
+//         })
+//         console.log(expenses)
+//     }, (e) => {
+//         console.log("Failed. ", e);
+//     })
 
 // //set
 // db.ref().set({
@@ -175,9 +151,9 @@ db.ref('expenses')
 
 
 //read realtime
-db.ref('boards/-MY_XQzDrpB1v26mJ_KO/cells/0/0').on('child_changed', (snapshot) => {
-    const val = snapshot.val();
-    console.log(val)
-}, (e) => {
-    console.log('Error with data fetching ', e)
-})
+// db.ref('boards/-MY_XQzDrpB1v26mJ_KO/cells/0/0').on('child_changed', (snapshot) => {
+//     const val = snapshot.val();
+//     console.log(val)
+// }, (e) => {
+//     console.log('Error with data fetching ', e)
+// })

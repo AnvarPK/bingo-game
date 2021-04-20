@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux';
-import { fromDB } from '../../firebase/firebase';
+import { watchBoardCells } from '../../redux/actions/boardCells';
 import Board from './Board'
 import ResultBord from './ResultBord'
 import './style.scss';
@@ -8,7 +8,7 @@ import './style.scss';
 const Play = ({ boardID }) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        fromDB(boardID, dispatch)
+        dispatch(watchBoardCells(boardID))
     }, [])
     return (
         <div className="container">

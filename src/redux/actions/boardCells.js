@@ -1,5 +1,5 @@
-import DB from '../../firebase/firebase';
-import { CHECK_CELL, CROSS_CELL } from '../reducers/boardCells';
+import DB from '../../config/firebase';
+import { CHECK_CELL, CROSS_CELL } from '../types';
 
 export const checkCell = (payload) => ({
     type: CHECK_CELL,
@@ -7,7 +7,6 @@ export const checkCell = (payload) => ({
 })
 
 export const startCheckCell = (id, payload) => {
-    console.log(id, payload)
     return (dispatch) => {
         const cellPos = { row: payload.pos[0], column: payload.pos[1] };
 
@@ -25,3 +24,11 @@ export const crossCell = (payload) => ({
     payload
 })
 
+export const watchBoardCells = (baordID) => async dispatch => {
+    DB.ref(`boards/${baordID}/cellPos`).on('value', snapshot => {
+        if (snapshot.val()) {
+            const pos = [snapshot.val().row, snapshot.val().column];
+            dispatch(checkCell({ pos }));
+        }
+    });
+}
